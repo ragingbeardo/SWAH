@@ -22,6 +22,11 @@ export class LoggingUtil
         if ( !surpriseMe ) this.logger.log(`SeasonalWeatherAtHome: ${message}`, LogTextColor.CYAN);
     }
 
+    public red(message: string, surpriseMe: boolean) : void
+    {
+        if ( !surpriseMe ) this.logger.log(`SeasonalWeatherAtHome: ${message}`, LogTextColor.RED);
+    }
+
     public error(message: string) : void
     {
         this.logger.error(`SeasonalWeatherAtHome: ${message}`);

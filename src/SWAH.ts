@@ -16,14 +16,21 @@ export class SWAH
 
     public determineSeason(probabilityHelper: ProbabilityHelper, weatherConfig: IWeatherConfig, modConfig: ModConfig): void
     {
-        if ( probabilityHelper.rollChance(modConfig.winterChancePercentage, 100) )
+        if ( modConfig.shutErDown )
         {
-            weatherConfig.forceWinterEvent = true;
-            this.loggingUtil.cyan("The weather is looking cold and snowy out there.", modConfig.surpriseMe);
-        } 
-        else 
+            this.loggingUtil.red("SWAH disabled due to shutErDown being true.", false);
+        }
+        else
         {
-            this.loggingUtil.green("The weather is looking warm and breezy out there.", modConfig.surpriseMe);
+            if ( probabilityHelper.rollChance(modConfig.winterChancePercentage, 100) )
+            {
+                weatherConfig.forceWinterEvent = true;
+                this.loggingUtil.cyan("The weather is looking cold and snowy out there.", modConfig.surpriseMe);
+            } 
+            else 
+            {
+                this.loggingUtil.green("The weather is looking warm and breezy out there.", modConfig.surpriseMe);
+            } 
         }
     }
 

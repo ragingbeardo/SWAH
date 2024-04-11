@@ -1,15 +1,15 @@
-import { IPreAkiLoadMod } from "@spt-aki/models/external/IPreAkiLoadMod";
-import { IPostDBLoadMod } from "@spt-aki/models/external/IPostDBLoadMod";
-import { IWeatherConfig } from "@spt-aki/models/spt/config/IWeatherConfig";
-import { ProbabilityHelper } from "@spt-aki/helpers/ProbabilityHelper";
-import { ConfigServer } from "@spt-aki/servers/ConfigServer";
+import type { IPreAkiLoadMod } from "@spt-aki/models/external/IPreAkiLoadMod";
+import type { IPostDBLoadMod } from "@spt-aki/models/external/IPostDBLoadMod";
+import type { IWeatherConfig } from "@spt-aki/models/spt/config/IWeatherConfig";
+import type { ProbabilityHelper } from "@spt-aki/helpers/ProbabilityHelper";
+import type { ConfigServer } from "@spt-aki/servers/ConfigServer";
 import { ConfigTypes } from "@spt-aki/models/enums/ConfigTypes";
 
 import { ConfigUtil } from "./util/ConfigUtil";
 import { LoggingUtil } from "./util/LoggingUtil";
-import { ModConfig } from "./model/ModConfig";
+import type { ModConfig } from "./model/ModConfig";
 import { SWAH } from "./SWAH";
-import { DependencyContainer, Lifecycle } from "tsyringe";
+import { type DependencyContainer, Lifecycle } from "tsyringe";
 
 class Mod implements IPreAkiLoadMod, IPostDBLoadMod
 {
@@ -18,11 +18,11 @@ class Mod implements IPreAkiLoadMod, IPostDBLoadMod
     public preAkiLoad(container: DependencyContainer): void
     {
         container.register<SWAH>("SWAH", SWAH, {lifecycle: Lifecycle.Singleton});
-        container.register<ConfigUtil>("ConfigUtil", ConfigUtil, {lifecycle: Lifecycle.Singleton});
-        container.register<LoggingUtil>("LoggingUtil", LoggingUtil, {lifecycle: Lifecycle.Singleton});
+        container.register<ConfigUtil>("SWAHConfigUtil", ConfigUtil, {lifecycle: Lifecycle.Singleton});
+        container.register<LoggingUtil>("SWAHLoggingUtil", LoggingUtil, {lifecycle: Lifecycle.Singleton});
 
         //parse the config and store the values
-        this.modConfig = container.resolve<ConfigUtil>("ConfigUtil").parseModConfig();
+        this.modConfig = container.resolve<ConfigUtil>("SWAHConfigUtil").parseModConfig();
     }
     
     public postDBLoad(container: DependencyContainer): void 

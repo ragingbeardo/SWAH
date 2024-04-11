@@ -1,15 +1,15 @@
-import { ProbabilityHelper } from "@spt-aki/helpers/ProbabilityHelper";
-import { IWeatherConfig } from "@spt-aki/models/spt/config/IWeatherConfig";
+import type { ProbabilityHelper } from "@spt-aki/helpers/ProbabilityHelper";
+import type { IWeatherConfig } from "@spt-aki/models/spt/config/IWeatherConfig";
 
-import { LoggingUtil } from "./util/LoggingUtil";
-import { ModConfig } from "./model/ModConfig";
+import type { LoggingUtil } from "./util/LoggingUtil";
+import type { ModConfig } from "./model/ModConfig";
 import { inject, injectable } from "tsyringe";
 
 @injectable()
 export class SWAH
 {
     constructor(
-        @inject("LoggingUtil") private loggingUtil: LoggingUtil
+        @inject("SWAHLoggingUtil") private loggingUtil: LoggingUtil
     ) 
     {
     }

@@ -11,7 +11,7 @@ import path from "path";
 export class ConfigUtil
 {
     constructor(
-        @inject("LoggingUtil") private loggingUtil: LoggingUtil
+        @inject("SWAHLoggingUtil") private loggingUtil: LoggingUtil
     )
     {}
 
@@ -27,7 +27,7 @@ export class ConfigUtil
         } 
         catch (error) 
         {
-            this.loggingUtil.error("SeasonalWeatherAtHome: Disabling mod due to an error parsing the config file. Make sure your values are set up correctly.");
+            this.loggingUtil.error("Disabling mod due to an error parsing the config file. Make sure your values are set up correctly.");
             //returns a mod config with the shut down flag set to true
             return new ModConfig(true);
         }

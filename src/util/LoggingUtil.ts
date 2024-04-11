@@ -1,5 +1,5 @@
 import { LogTextColor } from "@spt-aki/models/spt/logging/LogTextColor";
-import { ILogger } from "@spt-aki/models/spt/utils/ILogger";
+import type { ILogger } from "@spt-aki/models/spt/utils/ILogger";
 
 import { inject, injectable } from "tsyringe";
 

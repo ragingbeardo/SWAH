@@ -1,5 +1,3 @@
-import { DependencyContainer, Lifecycle } from "tsyringe";
-
 import { IPreAkiLoadMod } from "@spt-aki/models/external/IPreAkiLoadMod";
 import { IPostDBLoadMod } from "@spt-aki/models/external/IPostDBLoadMod";
 import { IWeatherConfig } from "@spt-aki/models/spt/config/IWeatherConfig";
@@ -8,8 +6,10 @@ import { ConfigServer } from "@spt-aki/servers/ConfigServer";
 import { ConfigTypes } from "@spt-aki/models/enums/ConfigTypes";
 
 import { ConfigUtil } from "./util/ConfigUtil";
+import { LoggingUtil } from "./util/LoggingUtil";
 import { ModConfig } from "./model/ModConfig";
 import { SWAH } from "./SWAH";
+import { DependencyContainer, Lifecycle } from "tsyringe";
 
 class Mod implements IPreAkiLoadMod, IPostDBLoadMod
 {
@@ -19,6 +19,7 @@ class Mod implements IPreAkiLoadMod, IPostDBLoadMod
     {
         container.register<SWAH>("SWAH", SWAH, {lifecycle: Lifecycle.Singleton});
         container.register<ConfigUtil>("ConfigUtil", ConfigUtil, {lifecycle: Lifecycle.Singleton});
+        container.register<LoggingUtil>("LoggingUtil", LoggingUtil, {lifecycle: Lifecycle.Singleton});
 
         //parse the config and store the values
         this.modConfig = container.resolve<ConfigUtil>("ConfigUtil").parseModConfig();

@@ -1,8 +1,8 @@
 export class ModConfig
 {
 
-    public shutErDown: boolean = false;
-    public surpriseMe: boolean = false;
+    public shutErDown: boolean;
+    public surpriseMe: boolean;
     public winterChancePercentage: number;
 
     constructor(shutErDown: boolean)

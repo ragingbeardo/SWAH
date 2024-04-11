@@ -1,8 +1,9 @@
-import { inject, injectable } from "tsyringe";
-import { LoggingUtil } from "./util/LoggingUtil";
 import { ProbabilityHelper } from "@spt-aki/helpers/ProbabilityHelper";
 import { IWeatherConfig } from "@spt-aki/models/spt/config/IWeatherConfig";
+
+import { LoggingUtil } from "./util/LoggingUtil";
 import { ModConfig } from "./model/ModConfig";
+import { inject, injectable } from "tsyringe";
 
 @injectable()
 export class SWAH

@@ -27,7 +27,6 @@ export class ConfigUtil
         } 
         catch (error) 
         {
-            this.loggingUtil.error(error);
             this.loggingUtil.error("SeasonalWeatherAtHome: Disabling mod due to an error parsing the config file. Make sure your values are set up correctly.");
             //returns a mod config with the shut down flag set to true
             return new ModConfig(true);

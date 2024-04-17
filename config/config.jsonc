@@ -1,5 +1,0 @@
-{
-    "shutErDown": false, // If true, nothing will work
-    "surpriseMe": false,  // If true, there will be no log outputs telling the weather forecast
-    "winterChancePercentage": 50 // Choose your percentage for the chance of winter mode being activated
-}

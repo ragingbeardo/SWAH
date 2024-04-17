@@ -1,17 +1,24 @@
 # Dependency directories
 node_modules/
+*/node_modules/
 
 # Build output
 dist/
+*/dist/
 build/
+*/build/
 out/
+*/out/
 
 # Environment variables
 .env
 
 # IDE files
 .vscode/
+*/.vscode/
 .idea/
+*/.idea/
 
 # Miscellaneous
 .DS_Store
+*/.DS_Store

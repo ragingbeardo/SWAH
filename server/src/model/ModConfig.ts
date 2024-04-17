@@ -3,7 +3,8 @@ export class ModConfig
 
     public shutErDown: boolean;
     public surpriseMe: boolean;
-    public winterChancePercentage: number;
+    public initialWinterChancePercentage: number;
+    public rollingWinterChancePercentage: number;
 
     constructor(shutErDown: boolean)
     {

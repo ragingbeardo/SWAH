@@ -1,0 +1,10 @@
+{
+    // If true, nothing will work
+    "shutErDown": false,
+    // If true, there will be no log outputs telling the weather forecast
+    "surpriseMe": false,
+    // Choose your percentage for the chance of winter on intial server start
+    "initialWinterChancePercentage": 50,
+    // Choose your percentage for the chance of winter mode being activated on a raid by raid basis
+    "rollingWinterChancePercentage": 25
+}

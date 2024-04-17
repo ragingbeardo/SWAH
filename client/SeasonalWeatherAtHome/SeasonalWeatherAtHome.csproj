@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+	  <Description>Use items from anywhere in the inventory</Description>
+	  <Version>1.0.1</Version>
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	  <LangVersion>latest</LangVersion>
+	  <PackageId>SeasonalWeatherAtHome</PackageId>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="Assembly-CSharp">
+			<HintPath>$(EFT_DEPS)\Assembly-CSharp.dll</HintPath>
+		</Reference>
+		<Reference Include="ItemComponent.Types">
+		  <HintPath>$(EFT_DEPS)\ItemComponent.Types.dll</HintPath>
+		</Reference>
+		<Reference Include="Comfort">
+			<HintPath>$(EFT_DEPS)\Comfort.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.CoreModule">
+			<HintPath>$(EFT_DEPS)\UnityEngine.CoreModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine">
+			<HintPath>$(EFT_DEPS)\UnityEngine.dll</HintPath>
+		</Reference>
+		<Reference Include="Aki.Common">
+			<HintPath>$(EFT_DEPS)\Aki.Common.dll</HintPath>
+		</Reference>
+		<Reference Include="Aki.reflection">
+			<HintPath>$(EFT_DEPS)\Aki.Reflection.dll</HintPath>
+		</Reference>
+		<Reference Include="Sirenix.Serialization">
+			<HintPath>$(EFT_DEPS)\Sirenix.Serialization.dll</HintPath>
+		</Reference>
+		<Reference Include="0Harmony">
+			<HintPath>$(EFT_DEPS)\0Harmony.dll</HintPath>
+		</Reference>
+		<Reference Include="BsgConsoleCore">
+			<HintPath>$(EFT_DEPS)\bsg.console.core.dll</HintPath>
+		</Reference>
+		<Reference Include="BepinEx">
+			<HintPath>$(EFT_DEPS)\BepInEx.dll</HintPath>
+		</Reference>
+		<Reference Include="NewtonsoftJson">
+			<HintPath>$(EFT_DEPS)\Newtonsoft.Json.dll</HintPath>
+		</Reference>
+		<Reference Include="BepinEx.Preloader">
+			<HintPath>$(EFT_DEPS)\BepInEx.Preloader.dll</HintPath>
+		</Reference>
+		<Reference Include="ConfigurationManager">
+			<HintPath>$(EFT_DEPS)\ConfigurationManager.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.IMGUIModule">
+		  <HintPath>$(EFT_DEPS)\UnityEngine.IMGUIModule.dll</HintPath>
+		</Reference>
+		<Reference Include="UnityEngine.TextRenderingModule">
+		  <HintPath>$(EFT_DEPS)\UnityEngine.TextRenderingModule.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="copy &quot;$(TargetPath)&quot; &quot;C:\SPT\Testing Ground\BepInEx\plugins\$(TargetName).dll&quot;" />
+		<Exec Condition="'$(Configuration)'=='Debug'" Command="copy &quot;$(SolutionDir)SeasonalWeatherAtHome\bin\Debug\net472\$(TargetName).pdb&quot; &quot;C:\SPT\Testing Ground\BepInEx\plugins\$(TargetName).pdb&quot;" />
+		<Exec Condition="'$(Configuration)'!='Debug'" Command="if exist &quot;C:\SPT\Testing Ground\BepInEx\plugins\$(TargetName).pdb&quot; del &quot;C:\SPT\Testing Ground\BepInEx\plugins\$(TargetName).pdb&quot;" />
+	</Target>
+
+</Project>

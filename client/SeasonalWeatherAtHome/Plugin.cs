@@ -8,12 +8,11 @@ using SeasonalWeatherAtHome.Helper;
 
 namespace SeasonalWeatherAtHome;
 
-[BepInPlugin("com.ragingbeardo.swah", "Seasonal Weather At Home", "2.0.0")]
+[BepInPlugin("com.ragingbeardo.swah", "Seasonal Weather At Home", "2.0.1")]
 public class Plugin : BaseUnityPlugin
 {
     public const int TarkovVersion = 29197;
     public static ManualLogSource? Log;
-    public static bool IsWinter;
 
     internal void Awake()
     {
@@ -37,9 +36,7 @@ internal class GameWorldPatch : ModulePatch
     internal static void PatchPrefix()
     {
         Plugin.Log?.LogDebug("Checking the weather...");
-        if (Plugin.IsWinter) return;
-        var result = LogicHelper.CheckTheForecast();
-        if (result?.Season == "Winter") Plugin.IsWinter = true;
-        Plugin.Log?.LogDebug("The season result is: " + result?.Season);
+        LogicHelper.CheckTheForecast();
+        Plugin.Log?.LogDebug("The weather was checked.");
     }
 }

@@ -5,9 +5,8 @@ namespace SeasonalWeatherAtHome.Helper;
 
 public abstract class LogicHelper
 {
-    public static SeasonResponse? CheckTheForecast()
+    public static void CheckTheForecast()
     {
-        var req = Aki.Common.Http.RequestHandler.GetJson("/swah/forecast");
-        return JsonConvert.DeserializeObject<SeasonResponse>(req);
+        Aki.Common.Http.RequestHandler.GetJson("/swah/forecast");
     }
 }

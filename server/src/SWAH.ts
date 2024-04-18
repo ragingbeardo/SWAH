@@ -4,7 +4,6 @@ import type { IWeatherConfig } from "@spt-aki/models/spt/config/IWeatherConfig";
 import type { LoggingUtil } from "./util/LoggingUtil";
 import type { ModConfig } from "./model/ModConfig";
 import { inject, injectable } from "tsyringe";
-import { Season } from "./model/Season";
 
 @injectable()
 export class SWAH
@@ -15,50 +14,48 @@ export class SWAH
     {
     }
 
-    public determineSeason(probabilityHelper: ProbabilityHelper, weatherConfig: IWeatherConfig, modConfig: ModConfig): Season
+    public determineSeason(probabilityHelper: ProbabilityHelper, weatherConfig: IWeatherConfig, modConfig: ModConfig): boolean
     {
         if ( modConfig.shutErDown )
         {
             this.loggingUtil.red("SWAH disabled due to shutErDown being true.", false);
-            return Season.SPRING;
+            return false;
         }
 
         if ( weatherConfig.forceWinterEvent )
         {
             this.loggingUtil.cyan("Winter is here to stay...", modConfig.surpriseMe);
-            return Season.WINTER;
+            return weatherConfig.forceWinterEvent;
         }
 
         if ( probabilityHelper.rollChance(modConfig.rollingWinterChancePercentage, 100) )
         {
             weatherConfig.forceWinterEvent = true;
-            this.loggingUtil.cyan("Winter is coming...", modConfig.surpriseMe);
-            return Season.WINTER;
+            this.loggingUtil.cyan("Winter is coming...", modConfig.surpriseMe);\
+            return weatherConfig.forceWinterEvent;
         }
 
         this.loggingUtil.green("The gopher or whatever said spring is still here.", modConfig.surpriseMe);
-        return Season.SPRING;
-
+        return weatherConfig.forceWinterEvent;
     }
 
-    public preRaidForecastCheck(probabilityHelper: ProbabilityHelper, weatherConfig: IWeatherConfig, modConfig: ModConfig): Season
+    public preRaidForecastCheck(probabilityHelper: ProbabilityHelper, weatherConfig: IWeatherConfig, modConfig: ModConfig): boolean
     {
         if ( modConfig.shutErDown )
         {
             this.loggingUtil.red("SWAH disabled due to shutErDown being true.", false);
-            return Season.SPRING;
+            return false;
         }
 
         if ( probabilityHelper.rollChance(modConfig.initialWinterChancePercentage, 100) )
         {
             weatherConfig.forceWinterEvent = true;
             this.loggingUtil.cyan("Hopefully you packed some cold weather gear...", modConfig.surpriseMe);
-            return Season.WINTER;
+            return weatherConfig.forceWinterEvent;
         }
 
         this.loggingUtil.green("The weather is looking warm and breezy out there.", modConfig.surpriseMe);
-        return Season.SPRING;
-
+        return weatherConfig.forceWinterEvent;
     }
 
 }
